@@ -165,7 +165,7 @@ func NewService() *Service { return &Service{} }
 // explicit level are reported in Errors and not stored. `now` is the ingest
 // time used for records whose own timestamp is missing or unparseable.
 func (s *Service) Ingest(lines []string, now time.Time) IngestResult {
-	res := IngestResult{}
+	res := IngestResult{Errors: []IngestError{}}
 	for i, line := range lines {
 		if strings.TrimSpace(line) == "" {
 			continue // skip blank lines silently
